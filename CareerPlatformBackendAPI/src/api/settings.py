@@ -8,7 +8,9 @@ class AppSettings(BaseSettings):
     """Application settings loaded from environment variables at runtime.
 
     The loader does NOT require a .env file to exist. If a .env file is present in the
-    working directory, it will be used as an additional source.
+    working directory, it will be used as an additional source. Absence of a .env file
+    must not cause build or runtime failure; environment variables should be injected by
+    the runtime orchestrator (Docker/Kubernetes/etc.).
 
     Critical variables:
     - APP_ENV: Environment name (development, staging, production)

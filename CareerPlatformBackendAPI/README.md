@@ -39,9 +39,19 @@ Note: The application reads environment variables from the process environment a
 - Do not bake `.env` into images.
 - Provide environment variables at container runtime via your orchestrator (Docker, Compose, Kubernetes, etc.).
 - The app fails gracefully with a clear message if critical variables are not supplied; the health endpoint will show `status=degraded`.
+- Dockerfile uses `python -m src.api.entrypoint` as the CMD and does not read or copy `.env` files at build time.
+- A `.dockerignore` is provided to exclude `.env` files and other local artifacts from the build context.
 
-Example (Docker):
-  docker run --rm -e APP_ENV=production -e JWT_SECRET=secret -e DATABASE_URL=postgresql://... -p 8000:8000 backend-image
+Build the image:
+  docker build -t career-platform-backend:latest .
+
+Run the container (runtime env only):
+  docker run --rm -p 8000:8000 \\
+    -e APP_ENV=production \\
+    -e PORT=8000 \\
+    -e JWT_SECRET=secret \\
+    -e DATABASE_URL=postgresql://user:pass@host:5432/dbname \\
+    career-platform-backend:latest
 
 ## Diagnostics
 
