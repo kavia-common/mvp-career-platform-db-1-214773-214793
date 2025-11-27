@@ -40,7 +40,7 @@ Note: The application reads environment variables from the process environment a
 - Provide environment variables at container runtime via your orchestrator (Docker, Compose, Kubernetes, etc.).
 - The app fails gracefully with a clear message if critical variables are not supplied; the health endpoint will show `status=degraded`.
 - Dockerfile uses `python -m src.api.entrypoint` as the CMD and does not read or copy `.env` files at build time.
-- A `.dockerignore` is provided to exclude `.env` files and other local artifacts from the build context.
+- A `.dockerignore` is provided in CareerPlatformBackendAPI/.dockerignore to exclude `.env` files and other local artifacts from the build context. This ensures no build-time references or accidental inclusion of secrets.
 
 Build the image:
   docker build -t career-platform-backend:latest .

@@ -1,0 +1,32 @@
+# Exclude environment files and local artifacts from Docker build context
+.env
+.env.*
+*.env
+*.env.*
+!*.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# VCS
+.git
+.gitignore
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+
+# Node (in case any tooling exists)
+node_modules/
+
+# Build outputs/logs
+dist/
+build/
+*.log
